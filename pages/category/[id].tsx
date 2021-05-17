@@ -5,8 +5,8 @@ const BlogId = ({ blog }) => {
     <main>
       <h1>{blog.title}</h1>
       <img src={blog.image.url} />
-      <p>{blog.publishedAt}</p>
-      <div 
+      <p className="m-6">{blog.publishedAt}</p>
+      <div className='m-10'
         dangerouslySetInnerHTML = {{
           __html: `${blog.body}`,
         }}
@@ -26,7 +26,7 @@ export const getStaticPaths: GetStaticPaths = async() => {
     .then(res => res.json())
     .catch(() => null);
   
-  const paths = data.contents.map(content => `/blog/${content.id}`);
+  const paths = data.contents.map(content => `/category/${content.id}`);
   return {paths, fallback: false};
 }
 

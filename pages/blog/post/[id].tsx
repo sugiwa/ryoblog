@@ -13,14 +13,26 @@ const BlogId = ({ blog, highlightedBody }) => {
       <nav className="bg-white py-4 font-sans">
         <div className="container m-auto flex items-baseline justify-center md:justify-start border-b-2 border-gray-300">
           <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/"><a>Blog</a></Link></h2>
-          <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/about"><a>Category</a></Link></h2>
+          <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/category"><a>Category</a></Link></h2>
           <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/about"><a>About</a></Link></h2>
         </div>
       </nav>
 
       <section className="font-sans container m-auto flex flex-col py-8 max-w-3xl text-center px-6">
         <label className="text-sm uppercase">{format(parseISO(blog.createdAt), "yyyy/MM/dd")}</label>
-        <h1 className="my-8 max-w-full m-auto text-3xl md:text-4xl lg:text-5xl font-medium">{blog.title}</h1>
+        <h1 className="mt-8 mb-3 max-w-full m-auto text-3xl md:text-4xl lg:text-5xl font-medium">{blog.title}</h1>
+        <p className="text-center text-blue-500">
+          {blog.category.map(ctg => {
+            return (
+              <span>
+                <Link href={`/category/${ctg.id}`}>
+                  <a>{ctg.title}</a>
+                </Link>
+              </span>
+            )
+          }
+          )}
+        </p>
         <div className="mt-1 lg:mt-4 m-auto leading-loose mb-6 text-left max-w-full"
           dangerouslySetInnerHTML = {{
             __html: `${highlightedBody}`,
@@ -105,6 +117,8 @@ export const getStaticProps: GetStaticProps = async context => {
       $(elm).html(result.value);
       $(elm).addClass('hljs');
     })
+
+    console.log(data)
 
   return {
     props: {

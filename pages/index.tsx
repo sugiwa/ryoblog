@@ -17,7 +17,7 @@ const About = ({blogs}) => {
 
             <section className="bg-white py-4 font-sans">
                 <h1 className="text-center text-4xl pb-10">記事一覧</h1>
-                <div className="container m-auto px-10 flex flex-wrap items-center justify-start">
+                <div className="container m-auto md:px-10 flex flex-wrap items-center justify-start">
                     {blogs.map(blog => {
                         return (
                             <div className="w-full md:w-1/2 flex flex-col mb-8 px-5" key={blog.id}>

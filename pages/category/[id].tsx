@@ -6,7 +6,12 @@ import {format, parseISO} from 'date-fns'
 
 const CategoryId = ({ blogs, category }) => {
   return (
-    <Layout>
+    <Layout
+      title = {`${category.title} + 一覧`}
+      description = {`${category.title} + 一覧です。`}
+      url = "/category"
+      image = ""
+    >
       <nav className="bg-white py-4 font-sans">
         <div className="container m-auto flex items-baseline justify-center md:justify-start border-b-2 border-gray-300">
           <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/"><a>Blog</a></Link></h2>
@@ -32,7 +37,7 @@ const CategoryId = ({ blogs, category }) => {
                           <p className="">
                               {blog.category.map(ctg => {
                                   return (
-                                      <span>{ctg.title} </span>
+                                      <span key={ctg.id}>{ctg.title} </span>
                                   )
                               })}
                           </p>

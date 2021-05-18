@@ -6,11 +6,16 @@ import {format, parseISO} from 'date-fns'
 
 const About = ({blogs}) => {
     return (
-        <Layout>
+        <Layout
+            title = "ブログ一覧"
+            description = "ブログ一覧です。"
+            url = "/"
+            image = ""
+        >
             <nav className="bg-white py-4 font-sans">
                 <div className="container m-auto flex justify-center items-baseline md:justify-start border-b-2 border-gray-300">
                   <h2 className="text-base font-bold tracking-wide uppercase py-4 px-6 border-b-2 border-black -mb-4"><Link href="/"><a>Blog</a></Link></h2>
-                  <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/about"><a>Category</a></Link></h2>
+                  <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/category"><a>Category</a></Link></h2>
                   <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/about"><a>About</a></Link></h2>
                 </div>
             </nav>

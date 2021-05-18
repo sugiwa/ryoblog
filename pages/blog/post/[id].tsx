@@ -9,7 +9,12 @@ import 'highlight.js/styles/night-owl.css';
 
 const BlogId = ({ blog, highlightedBody }) => {
   return (
-    <Layout>
+    <Layout
+      title = {blog.title}
+      description = {blog.description}
+      url = {`/blog/post/${blog.id}`}
+      image = {blog.image.url}
+    >
       <nav className="bg-white py-4 font-sans">
         <div className="container m-auto flex items-baseline justify-center md:justify-start border-b-2 border-gray-300">
           <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/"><a>Blog</a></Link></h2>
@@ -24,7 +29,7 @@ const BlogId = ({ blog, highlightedBody }) => {
         <p className="text-center text-blue-500">
           {blog.category.map(ctg => {
             return (
-              <span>
+              <span key={ctg.id}>
                 <Link href={`/category/${ctg.id}`}>
                   <a>{ctg.title}</a>
                 </Link>

@@ -49,7 +49,7 @@ const BlogId = ({ blog, highlightedBody }) => {
         <h2 className="text-3xl border-b-2 pb-2 text-center">関連記事</h2>
         <div className="container container max-w-xl m-auto flex flex-wrap flex-col md:flex-row items-center justify-start">
           <div className="w-full md:w-1/2 py-3 md:p-3">
-            <Link href={`blog/post/${blog.url}`}>
+            <Link href={`/blog/post/${blog.id}`}>
               <a>
                 <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow shadow-lg">
                   <Image className="block h-auto w-full flex-none bg-cover"
@@ -63,7 +63,7 @@ const BlogId = ({ blog, highlightedBody }) => {
             </Link>
           </div>
           <div className="w-full md:w-1/2 py-3 md:p-3">
-            <Link href={`blog/post/${blog.url}`}>
+            <Link href={`/blog/post/${blog.id}`}>
               <a>
                 <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow shadow-lg">
                   <Image className="block h-auto w-full flex-none bg-cover"
@@ -122,8 +122,6 @@ export const getStaticProps: GetStaticProps = async context => {
       $(elm).html(result.value);
       $(elm).addClass('hljs');
     })
-
-    console.log(data)
 
   return {
     props: {

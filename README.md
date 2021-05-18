@@ -10,6 +10,7 @@ GatsbyjsとContentfulで作成したブログをNextjsとmicroCMSで作り直し
 
 # 追加したいこと
 - ページネーション
+- PWA
 - パンくずリスト
 - サイトマップ
 

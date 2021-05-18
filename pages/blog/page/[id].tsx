@@ -1,10 +1,11 @@
 import React from 'react'
-import { GetStaticProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
-import Layout from '../components/Layout'
+import Layout from '../../../components/Layout'
+import Pagination from '../../../components/Pagination'
 import {format, parseISO} from 'date-fns'
 
-const About = ({blogs}) => {
+const BlogPageId = ({blogs, totalCount, pageId}) => {
     return (
         <Layout
             title = "ブログ一覧"
@@ -26,7 +27,7 @@ const About = ({blogs}) => {
                     {blogs.map(blog => {
                         return (
                             <div className="w-full md:w-1/2 flex flex-col mb-8 px-5" key={blog.id}>
-                                <Link href={`blog/post/${blog.id}`}>
+                                <Link href={`/blog/post/${blog.id}`}>
                                     <a>
                                         <div className="overflow-hidden bg-white rounded-lg shadow hover:shadow-raised hover:translateY-2px transition group hover:bg-white hover:shadow-lg hover:border-transparent">
                                             <img className="w-full group-hover:text-gray-900" src={blog.image.url} alt={blog.image.title}/>
@@ -50,32 +51,48 @@ const About = ({blogs}) => {
                         )
                     })}
                 </div>
+                <Pagination totalCount={totalCount} pageId={pageId} />
             </section>
-            <Link href='/blog/page/1'>
-                <a>
-                    <button className="container mx-auto bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                    Button
-                    </button>
-                </a>
-            </Link>
         </Layout>
 
     )
 }
 
-export default About
+export default BlogPageId
 
-export const getStaticProps: GetStaticProps = async() => {
+//静的生成のためのパスを指定
+export const getStaticPaths: GetStaticPaths = async() => {
+    const key = {
+      headers: {"X-API-KEY": process.env.API_KEY},
+    };
+    const res = await fetch("https://ryoblg.microcms.io/api/v1/blog", key)
+
+    const repos = await res.json();
+
+    const PER_PAGE = 6;
+
+    const range = (start, end) =>
+        [...Array(end - start + 1)].map((_, i) => start + i)
+    
+    const paths = range(1,Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => `/blog/page/${repo}`)
+    return {paths, fallback: false};
+}
+
+export const getStaticProps: GetStaticProps = async context => {
+    const id = parseInt(context.params.id[0]);
+
     const key = {
       headers: {'X-API-KEY': process.env.API_KEY},
     };
-    const data = await fetch("https://ryoblg.microcms.io/api/v1/blog?offset=0&limit=4", key)
+    const data = await fetch(`https://ryoblg.microcms.io/api/v1/blog?offset=${(id - 1) * 6}&limit=6`, key)
       .then(res => res.json())
       .catch(() => null);
       
     return {
       props: {
         blogs: data.contents,
+        totalCount: data.totalCount,
+        pageId: id
       },
     };
 };

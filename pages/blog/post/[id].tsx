@@ -25,15 +25,15 @@ const BlogId = ({ blog, blogs, highlightedBody }) => {
 
       <section className="font-sans container m-auto flex flex-col py-8 max-w-3xl text-center px-6">
         <label className="text-sm uppercase">{format(parseISO(blog.createdAt), "yyyy/MM/dd")}</label>
-        <h1 className="mt-8 mb-3 max-w-full m-auto text-3xl md:text-4xl lg:text-5xl font-medium">{blog.title}</h1>
-        <p className="text-center text-blue-500">
+        <h1 className="mt-8 mb-5 max-w-full m-auto text-3xl md:text-4xl lg:text-5xl font-medium">{blog.title}</h1>
+        <p className="mb-10">
           {blog.category.map(ctg => {
             return (
-              <span key={ctg.id}>
-                <Link href={`/category/${ctg.id}`}>
-                  <a>{ctg.title}</a>
-                </Link>　
-              </span>
+              <Link href={`/category/${ctg.id}`} key={ctg.id}>
+                <a className="py-1 mx-2 border-2 rounded-lg">
+                  <span className="px-2">{ctg.title}</span>
+                </a>
+              </Link>　
             )
           }
           )}

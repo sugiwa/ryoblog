@@ -1,12 +1,9 @@
 const withPWA = require('next-pwa')
 
-module.exports = {
-    images: {
-      domains: ['images.microcms-assets.io'],
-    },
-}
-
 module.exports = withPWA({
+  images: {
+    domains: ['images.microcms-assets.io'],
+  },
   pwa: {
     dest: 'public',
   }

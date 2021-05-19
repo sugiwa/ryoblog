@@ -26,15 +26,11 @@ const Layout = ({title, description, url, image, children}) => {
                 <meta name="twitter:title" content={tit} />
                 <meta name="twitter:description" content={desc} />
                 <meta name="twitter:image" content={image} />
-                <link rel="icon" href='/public/book.svg' />
-                <link
-                    rel="shortcut icon"
-                    href='/public/book.svg'
-                />
-                <link
-                    rel="apple-touch-icon"
-                    href='http://www.w3.org/2000/svg'
-                />
+                <meta name="theme-color" content="#fff" />
+                <link rel="icon" href='/icons/icon-128x128.png' />
+                <link rel="shortcut icon" href='/icons/icon-128x128.png'/>
+                <link rel="apple-touch-icon" href='/icons/icon-128x128.png'/>
+                <link rel="manifest" href="/manifest.json" />
             </Head>
 
             <Header />

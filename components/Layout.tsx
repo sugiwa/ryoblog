@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 const Layout = ({title, description, url, image, children}) => {
 
     const tit = title 
-        ? title + "|RyoBlog" 
+        ? `${title} | RyoBlog`
         : "RyoBlog"
     const desc = description || "RyoBlogです。プログラミングを学習する上で学んだことを発信しています。"
 

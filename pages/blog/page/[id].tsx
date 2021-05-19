@@ -8,9 +8,9 @@ import {format, parseISO} from 'date-fns'
 const BlogPageId = ({blogs, totalCount, pageId}) => {
     return (
         <Layout
-            title = "ブログ一覧"
-            description = "ブログ一覧です。"
-            url = "/"
+            title = {`Blog一覧${pageId}`}
+            description = {`Blog一覧の${pageId}ページです。`}
+            url = {`/blog/page/${pageId}`}
             image = ""
         >
             <nav className="bg-white py-4 font-sans">

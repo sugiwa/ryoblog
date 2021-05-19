@@ -32,7 +32,7 @@ const BlogId = ({ blog, highlightedBody }) => {
               <span key={ctg.id}>
                 <Link href={`/category/${ctg.id}`}>
                   <a>{ctg.title}</a>
-                </Link>
+                </Link>　
               </span>
             )
           }
@@ -51,10 +51,10 @@ const BlogId = ({ blog, highlightedBody }) => {
           <div className="w-full md:w-1/2 py-3 md:p-3">
             <Link href={`/blog/post/${blog.id}`}>
               <a>
-                <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow shadow-lg">
-                  <Image className="block h-auto w-full flex-none bg-cover"
+                <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow group hover:shadow-raised hover:translateY-2px hover:bg-white hover:shadow-lg hover:border-transparent">
+                  <Image className="block h-auto w-full flex-none bg-cover group-hover:text-gray-900"
                       src={blog.image.url} width={200} height={140}/>
-                  <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                  <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal group-hover:text-gray-900">
                     <div className="text-black font-bold text-xl mb-2 leading-tight">{blog.title}</div>
                     <p className="text-gray-700 text-base">{blog.createdAt}</p>
                   </div>
@@ -65,10 +65,10 @@ const BlogId = ({ blog, highlightedBody }) => {
           <div className="w-full md:w-1/2 py-3 md:p-3">
             <Link href={`/blog/post/${blog.id}`}>
               <a>
-                <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow shadow-lg">
-                  <Image className="block h-auto w-full flex-none bg-cover"
+                <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow group hover:shadow-raised hover:translateY-2px hover:bg-white hover:shadow-lg hover:border-transparent">
+                  <Image className="block h-auto w-full flex-none bg-cover group-hover:text-gray-900"
                       src={blog.image.url} width={200} height={140}/>
-                  <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                  <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal group-hover:text-gray-900">
                     <div className="text-black font-bold text-xl mb-2 leading-tight">{blog.title}</div>
                     <p className="text-gray-700 text-base">{blog.createdAt}</p>
                   </div>

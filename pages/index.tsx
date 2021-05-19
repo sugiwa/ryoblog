@@ -51,13 +51,16 @@ const About = ({blogs}) => {
                     })}
                 </div>
             </section>
-            <Link href='/blog/page/1'>
-                <a>
-                    <button className="container mx-auto bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow">
-                    Button
-                    </button>
-                </a>
-            </Link>
+            <div className="mx-auto text-center">
+                <Link href='/blog/page/1'>
+                    <a>
+                        <button className="px-6 py-2 mb-10 text-lg tracking-wider border border-gray-300 rounded hover:bg-gray-200 text-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                            記事一覧
+                        </button>
+                    </a>
+                </Link>
+            </div>
+
         </Layout>
 
     )

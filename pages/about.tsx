@@ -15,9 +15,9 @@ const About = ({blogs}) => {
         >
             <nav className="bg-white py-4 font-sans">
                 <div className="container m-auto flex justify-center items-baseline md:justify-start border-b-2 border-gray-300">
-                    <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/"><a>Blog</a></Link></h2>
-                    <h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6"><Link href="/category"><a>Category</a></Link></h2>
-                    <h2 className="text-base font-bold tracking-wide uppercase py-4 px-6 border-b-2 border-black -mb-4"><Link href="/about"><a>About</a></Link></h2>
+                    <Link href="/"><a><h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6">Blog</h2></a></Link>
+                    <Link href="/category"><a><h2 className="text-gray-700 text-base font-bold tracking-wide uppercase py-4 px-6">Category</h2></a></Link>
+                    <Link href="/about"><a><h2 className="text-base font-bold tracking-wide uppercase py-4 px-6 border-b-2 border-black -mb-4">About</h2></a></Link>
                 </div>
             </nav>
 

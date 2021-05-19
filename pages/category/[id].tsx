@@ -7,8 +7,8 @@ import {format, parseISO} from 'date-fns'
 const CategoryId = ({ blogs, category }) => {
   return (
     <Layout
-      title = {`${category.title} + 一覧`}
-      description = {`${category.title} + 一覧です。`}
+      title = {`カテゴリー：${category.title}`}
+      description = {`${category.title}一覧です。`}
       url = "/category"
       image = ""
     >

@@ -7,7 +7,7 @@ import cheerio from 'cheerio'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/night-owl.css';
 
-const BlogId = ({ blog, highlightedBody }) => {
+const BlogId = ({ blog, blogs, highlightedBody }) => {
   return (
     <Layout
       title = {blog.title}
@@ -46,36 +46,26 @@ const BlogId = ({ blog, highlightedBody }) => {
       </section>
 
       <section className="bg-white py-4 font-sans m-auto max-w-3xl px-6">
-        <h2 className="text-3xl border-b-2 pb-2 text-center">関連記事</h2>
+        <h2 className="text-3xl border-b-2 pb-2 text-center">最新記事</h2>
         <div className="container container max-w-xl m-auto flex flex-wrap flex-col md:flex-row items-center justify-start">
-          <div className="w-full md:w-1/2 py-3 md:p-3">
-            <Link href={`/blog/post/${blog.id}`}>
-              <a>
-                <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow group hover:shadow-raised hover:translateY-2px hover:bg-white hover:shadow-lg hover:border-transparent">
-                  <Image className="block h-auto w-full flex-none bg-cover group-hover:text-gray-900"
-                      src={blog.image.url} width={200} height={140}/>
-                  <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal group-hover:text-gray-900">
-                    <div className="text-black font-bold text-xl mb-2 leading-tight">{blog.title}</div>
-                    <p className="text-gray-700 text-base">{blog.createdAt}</p>
-                  </div>
-                </div>
-              </a>
-            </Link>
-          </div>
-          <div className="w-full md:w-1/2 py-3 md:p-3">
-            <Link href={`/blog/post/${blog.id}`}>
-              <a>
-                <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow group hover:shadow-raised hover:translateY-2px hover:bg-white hover:shadow-lg hover:border-transparent">
-                  <Image className="block h-auto w-full flex-none bg-cover group-hover:text-gray-900"
-                      src={blog.image.url} width={200} height={140}/>
-                  <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal group-hover:text-gray-900">
-                    <div className="text-black font-bold text-xl mb-2 leading-tight">{blog.title}</div>
-                    <p className="text-gray-700 text-base">{blog.createdAt}</p>
-                  </div>
-                </div>
-              </a>
-            </Link>
-          </div>
+          {blogs.map(blog => {
+            return (
+              <div className="w-full md:w-1/2 py-3 md:p-3" key={blog.id}>
+                <Link href={`/blog/post/${blog.id}`}>
+                  <a>
+                    <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow group hover:shadow-raised hover:translateY-2px hover:bg-white hover:shadow-lg hover:border-transparent">
+                      <Image className="block h-auto w-full flex-none bg-cover group-hover:text-gray-900"
+                          src={blog.image.url} width={200} height={140} alt={blog.image.title}/>
+                      <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal group-hover:text-gray-900">
+                        <div className="text-black font-bold text-xl mb-2 leading-tight">{blog.title}</div>
+                        <p className="text-gray-700 text-base">{format(parseISO(blog.createdAt), "yyyy/MM/dd")}</p>
+                      </div>
+                    </div>
+                  </a>
+                </Link>
+              </div>
+            )
+          })}
         </div>
       </section>
 
@@ -105,6 +95,7 @@ export const getStaticProps: GetStaticProps = async context => {
     headers: {"X-API-KEY": process.env.API_KEY},
   };
 
+  // 記事を受け取りリッチテキストを装飾
   const data = await fetch("https://ryoblg.microcms.io/api/v1/blog/" + id, key,)
     .then(res => res.json())
     .catch(() => null)
@@ -115,7 +106,7 @@ export const getStaticProps: GetStaticProps = async context => {
     $('h3').addClass('text-2xl border-b-2 pb-2')
     $('code').addClass('bg-red-100 text-red-400 px-1 rounded-md')
     $('a').addClass('text-blue-500')
-
+    
     // シンタックスハイライト
     $('pre code').each((_, elm) => {
       const result = hljs.highlightAuto($(elm).text());
@@ -123,9 +114,14 @@ export const getStaticProps: GetStaticProps = async context => {
       $(elm).addClass('hljs');
     })
 
-  return {
-    props: {
+    const blogs = await fetch("https://ryoblg.microcms.io/api/v1/blog?limit=4", key,)
+      .then(res => res.json())
+      .catch(() => null)
+    
+    return {
+      props: {
       blog: data,
+      blogs: blogs.contents,
       highlightedBody: $.html()
     }
   }

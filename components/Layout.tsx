@@ -31,22 +31,6 @@ const Layout = ({title, description, url, image, children}) => {
                 <link rel="shortcut icon" href='/icons/icon-128x128.png'/>
                 <link rel="apple-touch-icon" href='/icons/icon-128x128.png'/>
                 <link rel="manifest" href="/manifest.json" />
-                <script
-                    async
-                    src={`https://www.googletagmanager.com/gtag/js?id=${process.env.TRACKING_ID}`}
-                />
-                <script
-                    dangerouslySetInnerHTML={{
-                    __html: `
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${process.env.TRACKING_ID}', {
-                    page_path: window.location.pathname,
-                    });
-                    `,
-                    }}
-                />
             </Head>
 
             <Header />

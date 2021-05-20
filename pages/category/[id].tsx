@@ -9,7 +9,7 @@ const CategoryId = ({ blogs, category }) => {
     <Layout
       title = {`カテゴリー：${category.title}`}
       description = {`${category.title}一覧です。`}
-      url = "/category"
+      url = {`/category/${category.id}`}
       image = ""
     >
       <nav className="bg-white py-4 font-sans">

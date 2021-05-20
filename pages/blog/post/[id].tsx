@@ -30,7 +30,7 @@ const BlogId = ({ blog, blogs, highlightedBody }) => {
           {blog.category.map(ctg => {
             return (
               <Link href={`/category/${ctg.id}`} key={ctg.id}>
-                <a className="py-1 mx-2 border-2 rounded-lg">
+                <a className="py-1 mx-2 rounded-lg shadow hover:shadow-raised hover:translateY-2px transition group hover:bg-white hover:shadow-lg hover:border-transparent">
                   <span className="px-2">{ctg.title}</span>
                 </a>
               </Link>　
@@ -54,10 +54,10 @@ const BlogId = ({ blog, blogs, highlightedBody }) => {
                 <Link href={`/blog/post/${blog.id}`}>
                   <a>
                     <div className="flex flex-row md:flex-col rounded overflow-hidden h-auto border shadow group hover:shadow-raised hover:translateY-2px hover:bg-white hover:shadow-lg hover:border-transparent">
-                      <Image className="block h-auto w-full flex-none bg-cover group-hover:text-gray-900"
-                          src={blog.image.url} width={200} height={140} alt={blog.image.title}/>
-                      <div className="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal group-hover:text-gray-900">
-                        <div className="text-black font-bold text-xl mb-2 leading-tight">{blog.title}</div>
+                      <Image className="block h-auto md:w-full flex-none bg-cover group-hover:text-gray-900"
+                          src={blog.image.url} width={200} height={140} alt={blog.title}/>
+                      <div className="w-3/4 md:w-full bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal group-hover:text-gray-900">
+                        <h4 className="line-clamp-2 text-black font-bold text-xl mb-2 leading-tight">{blog.title}</h4>
                         <p className="text-gray-700 text-base">{format(parseISO(blog.createdAt), "yyyy/MM/dd")}</p>
                       </div>
                     </div>

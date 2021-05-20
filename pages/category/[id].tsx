@@ -22,26 +22,26 @@ const CategoryId = ({ blogs, category }) => {
 
       <section className="bg-white py-4 font-sans">
         <h1 className="text-center text-4xl pb-10">カテゴリー：{category.title}</h1>
-        <div className="container m-auto px-10 flex flex-wrap items-center justify-start">
+        <div className="container m-auto md:px-10 flex flex-wrap items-center justify-start">
           {blogs.map(blog => {
             return (
               <div className="w-full md:w-1/2 flex flex-col mb-8 px-5" key={blog.id}>
                 <Link href={`/blog/post/${blog.id}`}>
                   <a>
                     <div className="overflow-hidden bg-white rounded-lg shadow hover:shadow-raised hover:translateY-2px transition group hover:bg-white hover:shadow-lg hover:border-transparent">
-                      <img className="w-full group-hover:text-gray-900" src={blog.image.url} alt={blog.image.title}/>
+                      <img className="w-full group-hover:text-gray-900" src={blog.image.url} alt={blog.title}/>
                       <div className="p-6 flex flex-col justify-between group-hover:text-gray-900">
                           <h3 className="font-medium text-gray-900 mb-4 leading-normal">
                               {blog.title}
                           </h3>
-                          <p className="">
+                          <p>
                               {blog.category.map(ctg => {
                                   return (
                                       <span key={ctg.id}>{ctg.title} </span>
                                   )
                               })}
                           </p>
-                          <p className="">{format(parseISO(blog.createdAt), "yyyy/MM/dd")}</p>
+                          <p>{format(parseISO(blog.createdAt), "yyyy/MM/dd")}</p>
                       </div>
                     </div>
                   </a>

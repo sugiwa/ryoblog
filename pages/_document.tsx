@@ -10,10 +10,9 @@ class MyDocument extends Document {
         return (
             <Html lang="ja">
                 <Head>
-                    <script
-                    data-ad-client={process.env.ADSENSE_CLIENT_ID}
-                    async
-                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+                    <script 
+                        data-ad-client="ca-pub-6816833508313782" 
+                        async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
                     />
                     <script
                         async

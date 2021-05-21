@@ -11,6 +11,11 @@ class MyDocument extends Document {
             <Html lang="ja">
                 <Head>
                     <script
+                    data-ad-client={process.env.ADSENSE_CLIENT_ID}
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+                    />
+                    <script
                         async
                         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.TRACKING_ID}`}
                     />

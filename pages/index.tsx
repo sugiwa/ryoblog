@@ -30,7 +30,9 @@ const About = ({blogs}) => {
                                 <Link href={`blog/post/${blog.id}`}>
                                     <a>
                                         <div className="overflow-hidden bg-white rounded-lg shadow hover:shadow-raised hover:translateY-2px transition group hover:bg-white hover:shadow-lg hover:border-transparent">
-                                            <img className="w-full group-hover:text-gray-900" src={blog.image.url} alt={blog.title}/>
+                                            <Image className="w-full group-hover:text-gray-900" src={blog.image.url} alt={blog.title}
+                                                width={600} height={337} layout={"responsive"}
+                                            />
                                             <div className="p-6 flex flex-col justify-between group-hover:text-gray-900">
                                                 <h3 className="font-medium text-gray-900 mb-4 leading-normal">
                                                     {blog.title}

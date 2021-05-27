@@ -65,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = async() => {
     const key = {
       headers: {"X-API-KEY": process.env.API_KEY},
     };
-    const res = await fetch("https://ryoblg.microcms.io/api/v1/blog", key)
+    const res = await fetch("https://ryoblg.microcms.io/api/v1/blog?limit=20", key)
 
     const repos = await res.json();
 
